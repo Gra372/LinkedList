@@ -141,6 +141,30 @@ namespace LinkedList
                 temp = temp.next;
             }
         }
+
+        internal void Remove(int v)
+        {
+            Node head = this.node;
+
+            while (head != null && head.val == v)
+            {
+                head = head.next;
+            }
+            if (head == null) this.node = null;
+
+            Node node = head;
+            while (node.next != null)
+            {
+                if (node.next.val == v)
+                {
+                    node.next = node.next.next;
+                    continue;
+                }
+
+                node = node.next;
+            }
+            this.node = head;
+        }
     }
 
     /**
@@ -161,8 +185,13 @@ namespace LinkedList
             obj.AddAtIndex(0, 20);
             obj.AddAtIndex(1, 30);
             obj.AddAtTail(25);
+            obj.AddAtTail(30);
             obj.Get(0);
 
+            obj.Print();
+
+            obj.Remove(30);
+            Console.WriteLine();
 
             obj.Print();
         }
